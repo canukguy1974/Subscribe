@@ -1,11 +1,11 @@
 
 'use client';
 
-import type { Subscription, SubscriptionCategory } from '@/types';
+import type { Subscription } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CalendarDays, CreditCard, Edit3, Bell, BellOff, Trash2, ExternalLink, Info, AlertTriangle, CheckCircle, Package } from 'lucide-react';
+import { CalendarDays, CreditCard, Edit3, Bell, BellOff, Trash2, ExternalLink, Info, AlertTriangle, CheckCircle, Package, Repeat } from 'lucide-react';
 import { getCategoryIcon } from '@/lib/placeholder-data';
 import {
   DropdownMenu,
@@ -19,6 +19,7 @@ import { Label } from "@/components/ui/label";
 import { MoreVertical } from 'lucide-react';
 import Link from 'next/link';
 import { format, parseISO, differenceInDays, isValid } from 'date-fns';
+import React, { useState } from 'react';
 
 interface SubscriptionCardProps {
   subscription: Subscription;
@@ -30,6 +31,7 @@ interface SubscriptionCardProps {
 export default function SubscriptionCard({ subscription, onEdit, onDelete, onToggleNotification }: SubscriptionCardProps) {
   const CategoryIconComponent = getCategoryIcon(subscription.category);
   const iconProps = { className: "w-5 h-5" };
+  const [showAnnualized, setShowAnnualized] = useState(false);
 
   const formatDate = (dateString?: string) => {
     if (!dateString) return 'N/A';
@@ -68,6 +70,35 @@ export default function SubscriptionCard({ subscription, onEdit, onDelete, onTog
     }
     return <Badge variant="outline">No upcoming payment</Badge>;
   };
+
+  const displayPrice = () => {
+    if (subscription.price === 0) return 'Free';
+
+    let price = subscription.price;
+    let period = subscription.renewalPeriod || 'cycle';
+
+    if (showAnnualized) {
+      if (subscription.renewalPeriod === 'monthly') {
+        price = subscription.price * 12;
+        period = 'year';
+      } else if (subscription.renewalPeriod === 'yearly') {
+        price = subscription.price / 12;
+        period = 'month';
+      }
+    }
+    return `${subscription.currency} ${price.toFixed(2)} / ${period}`;
+  };
+
+  const canTogglePriceView = subscription.renewalPeriod === 'monthly' || subscription.renewalPeriod === 'yearly';
+  
+  const toggleButtonText = () => {
+    if (!canTogglePriceView) return '';
+    if (showAnnualized) {
+      return subscription.renewalPeriod === 'monthly' ? 'View Monthly' : 'View Yearly';
+    }
+    return subscription.renewalPeriod === 'monthly' ? 'View Yearly' : 'View Monthly';
+  };
+
 
   return (
     <Card className="flex flex-col justify-between shadow-lg hover:shadow-primary/30 transition-all duration-300 ease-in-out transform hover:-translate-y-1">
@@ -110,7 +141,14 @@ export default function SubscriptionCard({ subscription, onEdit, onDelete, onTog
       <CardContent className="space-y-3 text-sm">
         <div className="flex items-center justify-between">
           <span className="text-muted-foreground flex items-center gap-1"><CreditCard className="w-4 h-4" /> Payment:</span>
-          <span className="font-medium">{subscription.price > 0 ? `${subscription.currency} ${subscription.price.toFixed(2)} / ${subscription.renewalPeriod || 'cycle'}` : 'Free'}</span>
+          <div className="flex items-center gap-2">
+            <span className="font-medium">{displayPrice()}</span>
+            {canTogglePriceView && subscription.price > 0 && (
+              <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setShowAnnualized(!showAnnualized)} title={toggleButtonText()}>
+                <Repeat className="w-3 h-3" />
+              </Button>
+            )}
+          </div>
         </div>
         <div className="flex items-center justify-between">
           <span className="text-muted-foreground flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Status:</span>
@@ -155,3 +193,4 @@ export default function SubscriptionCard({ subscription, onEdit, onDelete, onTog
     </Card>
   );
 }
+
