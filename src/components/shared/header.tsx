@@ -1,9 +1,10 @@
+
 'use client';
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, MailCheck, Bell, Settings, LogOut, UserCircle, CreditCard } from 'lucide-react';
+import { Menu, MailCheck, Bell, Settings, LogOut, UserCircle, CreditCard, ListChecks } from 'lucide-react';
 import Logo from '@/components/icons/logo';
 import {
   DropdownMenu,
@@ -20,6 +21,7 @@ import React from 'react';
 
 const navLinks = [
   { href: '/dashboard', label: 'Dashboard' },
+  { href: '/subscriptions-list', label: 'All Subscriptions' },
   { href: '/connect-account', label: 'Connect Accounts' },
   { href: '/settings', label: 'Settings' },
 ];
@@ -29,19 +31,25 @@ const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
   React.useEffect(() => {
     // Simulate checking auth state on mount
-    const authStatus = localStorage.getItem('isAuthenticated') === 'true';
-    setIsAuthenticated(authStatus);
+    if (typeof window !== 'undefined') {
+      const authStatus = localStorage.getItem('isAuthenticated') === 'true';
+      setIsAuthenticated(authStatus);
+    }
   }, []);
   
   const login = () => {
-    localStorage.setItem('isAuthenticated', 'true');
-    setIsAuthenticated(true);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('isAuthenticated', 'true');
+      setIsAuthenticated(true);
+    }
   };
   const logout = () => {
-    localStorage.removeItem('isAuthenticated');
-    setIsAuthenticated(false);
-     // Redirect or update UI after logout if needed
-    if (typeof window !== 'undefined') window.location.href = '/login';
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('isAuthenticated');
+      setIsAuthenticated(false);
+       // Redirect or update UI after logout if needed
+      window.location.href = '/login';
+    }
   };
   return { isAuthenticated, login, logout };
 };
@@ -70,7 +78,7 @@ export default function Header() {
               href={link.href}
               className={cn(
                 "transition-colors hover:text-foreground/80",
-                pathname === link.href ? "text-foreground" : "text-foreground/60"
+                pathname === link.href ? "text-foreground font-semibold" : "text-foreground/60"
               )}
             >
               {link.label}
@@ -167,3 +175,4 @@ function UserNav({ onLogout }: { onLogout: () => void }) {
     </DropdownMenu>
   );
 }
+
