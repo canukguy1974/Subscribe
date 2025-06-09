@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -45,39 +46,40 @@ body {
   }
 
   .dark {
-    --background: 220 20% 10%; /* Dark desaturated blue */
-    --foreground: 210 15% 95%; /* Off-white */
-    --card: 220 20% 13%; /* Slightly lighter than background */
-    --card-foreground: 210 15% 95%;
-    --popover: 220 20% 10%;
-    --popover-foreground: 210 15% 95%;
-    --primary: 217 91% 50%; /* Shiny metallic blue */
-    --primary-foreground: 210 15% 98%;
-    --secondary: 220 20% 20%;
-    --secondary-foreground: 210 15% 95%;
-    --muted: 220 20% 20%;
-    --muted-foreground: 210 15% 65%;
-    --accent: 270 80% 60%; /* Vibrant purple for gradient accent */
-    --accent-foreground: 210 15% 98%;
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 210 15% 98%;
-    --border: 220 20% 25%;
-    --input: 220 20% 22%;
-    --ring: 217 91% 50%;
-    --chart-1: 217 91% 50%;
-    --chart-2: 270 80% 60%;
-    --chart-3: 180 80% 50%;
-    --chart-4: 40 90% 55%;
-    --chart-5: 300 75% 60%;
+    --background: 0 0% 0%; /* Black like Vercel */
+    --foreground: 210 15% 95%; /* Main text: Off-white */
+    --card: 217 91% 50%; /* Card BG: Metallic blue */
+    --card-foreground: 210 15% 98%; /* Card Text: Bright White */
+    --popover: 217 91% 45%; /* Popover BG: Slightly darker metallic blue */
+    --popover-foreground: 210 15% 98%; /* Popover Text: Bright White */
+    --primary: 217 91% 65%; /* Primary actions: Brighter Metallic Blue */
+    --primary-foreground: 210 15% 98%; /* Text on primary actions: Bright White */
+    --secondary: 220 10% 15%; /* Secondary elements BG: Dark Gray-Blue */
+    --secondary-foreground: 210 15% 85%; /* Secondary text: Light Gray */
+    --muted: 220 10% 12%; /* Muted elements BG: Very Dark Gray-Blue */
+    --muted-foreground: 210 20% 80%; /* Muted text: Lighter Gray (for contrast on blue cards and black bg) */
+    --accent: 270 80% 70%; /* Accent color (gradients): Brighter Purple */
+    --accent-foreground: 210 15% 98%; /* Text on accent: Bright White */
+    --destructive: 0 70% 60%; /* Destructive actions: Brighter Red */
+    --destructive-foreground: 210 15% 98%; /* Text on destructive: Bright White */
+    --border: 217 91% 40%; /* Borders (e.g. around cards): Darker shade of card blue */
+    --input: 220 10% 18%; /* Input BG: Dark Gray-Blue */
+    --ring: 217 91% 65%; /* Focus Rings: Brighter Metallic Blue (match primary) */
+    
+    --chart-1: 10 80% 60%; /* Warm contrast for charts e.g. Orange */
+    --chart-2: 270 80% 60%; /* Existing vibrant purple */
+    --chart-3: 180 80% 50%; /* Existing cyan/teal */
+    --chart-4: 40 90% 55%; /* Existing yellow/gold */
+    --chart-5: 300 75% 60%; /* Existing magenta */
 
-    --sidebar-background: 220 20% 13%;
-    --sidebar-foreground: 210 15% 95%;
-    --sidebar-primary: 217 91% 50%;
-    --sidebar-primary-foreground: 210 15% 98%;
-    --sidebar-accent: 220 20% 20%;
-    --sidebar-accent-foreground: 210 15% 95%;
-    --sidebar-border: 220 20% 25%;
-    --sidebar-ring: 217 91% 50%;
+    --sidebar-background: 220 15% 7%; /* Sidebar BG: Very dark, slightly blue-ish gray */
+    --sidebar-foreground: 210 15% 85%; /* Sidebar Text: Light Gray */
+    --sidebar-primary: 217 91% 65%; /* Sidebar Active/Primary: Brighter Metallic Blue */
+    --sidebar-primary-foreground: 210 15% 98%; /* Text on Sidebar Active: Bright White */
+    --sidebar-accent: 220 15% 12%; /* Sidebar Hover BG: Dark Gray-Blue */
+    --sidebar-accent-foreground: 210 15% 95%; /* Sidebar Hover Text: Off-White */
+    --sidebar-border: 220 15% 15%; /* Sidebar Borders: Dark Gray-Blue */
+    --sidebar-ring: 217 91% 65%; /* Sidebar Focus Ring: Brighter Metallic Blue */
   }
 }
 
