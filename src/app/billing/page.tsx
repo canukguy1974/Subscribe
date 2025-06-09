@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -6,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { CheckCircle, XCircle, Zap, Star } from 'lucide-react';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const plans = [
   {
@@ -43,6 +45,24 @@ const plans = [
     gradient: 'bg-gradient-to-r from-primary to-accent',
   },
 ];
+
+const mockPaymentHistory = [
+  {
+    id: 'inv1',
+    date: '2024-06-15',
+    description: 'Premium Plan - Monthly Subscription',
+    amount: '$5.00',
+    status: 'Paid',
+  },
+  {
+    id: 'inv2',
+    date: '2024-05-15',
+    description: 'Premium Plan - Monthly Subscription',
+    amount: '$5.00',
+    status: 'Paid',
+  },
+];
+
 
 export default function BillingPage() {
   const { toast } = useToast();
@@ -118,8 +138,41 @@ export default function BillingPage() {
           <CardDescription>View your past invoices and payment details.</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">No payment history yet. Your invoices will appear here once you subscribe to a paid plan.</p>
-          {/* Placeholder for payment history table */}
+          {mockPaymentHistory.length > 0 ? (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Description</TableHead>
+                  <TableHead className="text-right">Amount</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Invoice</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {mockPaymentHistory.map((payment) => (
+                  <TableRow key={payment.id}>
+                    <TableCell>{payment.date}</TableCell>
+                    <TableCell>{payment.description}</TableCell>
+                    <TableCell className="text-right">{payment.amount}</TableCell>
+                    <TableCell>
+                       <span className={`px-2 py-1 text-xs rounded-full ${payment.status === 'Paid' ? 'bg-green-500/20 text-green-300' : 'bg-yellow-500/20 text-yellow-300'}`}>
+                        {payment.status}
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button variant="link" size="sm" asChild>
+                        <Link href={`/invoice/${payment.id}`}>View</Link>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+              <TableCaption>A list of your recent payments.</TableCaption>
+            </Table>
+          ) : (
+            <p className="text-muted-foreground">No payment history yet. Your invoices will appear here once you subscribe to a paid plan.</p>
+          )}
         </CardContent>
       </Card>
       
