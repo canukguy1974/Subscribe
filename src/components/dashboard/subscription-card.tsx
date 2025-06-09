@@ -1,10 +1,11 @@
+
 'use client';
 
 import type { Subscription, SubscriptionCategory } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CalendarDays, CreditCard, Edit3, Bell, BellOff, Trash2, ExternalLink, Info, AlertTriangle, CheckCircle } from 'lucide-react';
+import { CalendarDays, CreditCard, Edit3, Bell, BellOff, Trash2, ExternalLink, Info, AlertTriangle, CheckCircle, Package } from 'lucide-react';
 import { getCategoryIcon } from '@/lib/placeholder-data';
 import {
   DropdownMenu,
@@ -27,7 +28,8 @@ interface SubscriptionCardProps {
 }
 
 export default function SubscriptionCard({ subscription, onEdit, onDelete, onToggleNotification }: SubscriptionCardProps) {
-  const categoryIcon = getCategoryIcon(subscription.category);
+  const CategoryIconComponent = getCategoryIcon(subscription.category);
+  const iconProps = { className: "w-5 h-5" };
 
   const formatDate = (dateString?: string) => {
     if (!dateString) return 'N/A';
@@ -72,7 +74,9 @@ export default function SubscriptionCard({ subscription, onEdit, onDelete, onTog
       <CardHeader>
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-muted rounded-full">{categoryIcon}</div>
+            <div className="p-2 bg-muted rounded-full">
+              {CategoryIconComponent ? <CategoryIconComponent {...iconProps} /> : <Package {...iconProps} />}
+            </div>
             <div>
               <CardTitle className="text-xl font-headline">{subscription.serviceName}</CardTitle>
               <CardDescription>{subscription.category}</CardDescription>
