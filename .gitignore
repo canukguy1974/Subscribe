@@ -1,4 +1,4 @@
-node_modules/
+-e node_modules/
 .firebase/
 .env
 *.log
