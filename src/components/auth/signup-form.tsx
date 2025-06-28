@@ -55,12 +55,12 @@ export default function SignupForm() {
   };
 
   return (
-    <Card className="w-full max-w-md shadow-2xl">
+    <Card className="w-full max-w-md shadow-2xl bg-gradient-to-br from-card to-primary/10">
       <CardHeader className="text-center">
-        <CardTitle className="text-3xl font-bold font-headline bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+        <CardTitle className="text-3xl font-bold font-headline text-primary-foreground">
           Create Your Account
         </CardTitle>
-        <CardDescription>Join SubScribe and take control of your subscriptions.</CardDescription>
+        <CardDescription className="text-primary-foreground/80">Join SubScribe and take control of your subscriptions.</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>

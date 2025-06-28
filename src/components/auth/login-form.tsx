@@ -60,12 +60,12 @@ export default function LoginForm() {
   };
 
   return (
-    <Card className="w-full max-w-md shadow-2xl">
+    <Card className="w-full max-w-md shadow-2xl bg-gradient-to-br from-card to-primary/10">
       <CardHeader className="text-center">
-        <CardTitle className="text-3xl font-bold font-headline bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+        <CardTitle className="text-3xl font-bold font-headline text-primary-foreground">
           Welcome Back!
         </CardTitle>
-        <CardDescription>Sign in to access your SubScribe dashboard.</CardDescription>
+        <CardDescription className="text-primary-foreground/80">Sign in to access your SubScribe dashboard.</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
