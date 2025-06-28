@@ -49,7 +49,7 @@ export default function SettingsPage() {
     <div className="space-y-8">
       <h1 className="text-3xl font-bold font-headline tracking-tight">Settings</h1>
       
-      <Card className="bg-gradient-to-br from-card to-primary/10">
+      <Card className="bg-gradient-to-br from-primary/10 to-accent/10">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><User className="w-5 h-5" /> Profile Settings</CardTitle>
           <CardDescription>Manage your personal information and preferences.</CardDescription>
@@ -80,7 +80,7 @@ export default function SettingsPage() {
 
       <Separator />
 
-      <Card className="bg-gradient-to-br from-card to-primary/10">
+      <Card className="bg-gradient-to-br from-primary/10 to-accent/10">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Bell className="w-5 h-5" /> Notification Preferences</CardTitle>
           <CardDescription>Control how you receive alerts and updates.</CardDescription>
@@ -106,7 +106,7 @@ export default function SettingsPage() {
       
       <Separator />
 
-      <Card className="bg-gradient-to-br from-card to-primary/10">
+      <Card className="bg-gradient-to-br from-primary/10 to-accent/10">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><KeyRound className="w-5 h-5" /> Security Settings</CardTitle>
           <CardDescription>Manage your account security, like password changes.</CardDescription>
@@ -128,7 +128,7 @@ export default function SettingsPage() {
 
       <Separator />
       
-      <Card className="bg-gradient-to-br from-card to-primary/10">
+      <Card className="bg-gradient-to-br from-primary/10 to-accent/10">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><CreditCard className="w-5 h-5" /> Billing & Subscription</CardTitle>
           <CardDescription>Manage your SubScribe plan and payment methods.</CardDescription>

@@ -60,7 +60,7 @@ export default function LoginForm() {
   };
 
   return (
-    <Card className="w-full max-w-md shadow-2xl bg-gradient-to-br from-card to-primary/10">
+    <Card className="w-full max-w-md shadow-2xl bg-gradient-to-br from-primary/10 to-accent/10">
       <CardHeader className="text-center">
         <CardTitle className="text-3xl font-bold font-headline text-primary-foreground">
           Welcome Back!
