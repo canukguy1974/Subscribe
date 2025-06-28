@@ -30,7 +30,6 @@ interface SubscriptionCardProps {
 
 export default function SubscriptionCard({ subscription, onEdit, onDelete, onToggleNotification }: SubscriptionCardProps) {
   const CategoryIconComponent = getCategoryIcon(subscription.category);
-  const iconProps = { className: "w-5 h-5" };
   const [showAnnualized, setShowAnnualized] = useState(false);
 
   const formatDate = (dateString?: string) => {
@@ -101,12 +100,12 @@ export default function SubscriptionCard({ subscription, onEdit, onDelete, onTog
 
 
   return (
-    <Card className="flex flex-col justify-between shadow-lg hover:shadow-primary/30 transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+    <Card className="flex flex-col justify-between shadow-lg hover:shadow-primary/30 transition-all duration-300 ease-in-out transform hover:-translate-y-1 bg-gradient-to-br from-primary/10 to-accent/10">
       <CardHeader>
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-muted rounded-full">
-              {CategoryIconComponent ? <CategoryIconComponent {...iconProps} /> : <Package {...iconProps} />}
+              {CategoryIconComponent ? <CategoryIconComponent className="w-5 h-5" /> : <Package className="w-5 h-5" />}
             </div>
             <div>
               <CardTitle className="text-xl font-headline">{subscription.serviceName}</CardTitle>
@@ -193,4 +192,3 @@ export default function SubscriptionCard({ subscription, onEdit, onDelete, onTog
     </Card>
   );
 }
-

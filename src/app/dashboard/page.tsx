@@ -14,6 +14,7 @@ import { categorizeSubscription, CategorizeSubscriptionInput } from '@/ai/flows/
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { Progress } from '@/components/ui/progress';
+import Link from 'next/link';
 
 export default function DashboardPage() {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
@@ -164,7 +165,7 @@ export default function DashboardPage() {
           <p className="text-muted-foreground">Manage all your active and upcoming subscriptions.</p>
         </div>
         <div className="flex gap-2">
-          <Button onClick={() => setIsScanModalOpen(true)} variant="outline" disabled={!canScan && !userProfile.isPremium}>
+          <Button onClick={() => setIsScanModalOpen(true)} className="bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 transition-opacity" disabled={!canScan && !userProfile.isPremium}>
             <MailSearch className="mr-2 h-4 w-4" /> Scan Email
             {!userProfile.isPremium && ` (${scansRemaining} free scan${scansRemaining === 1 ? '' : 's'} left)`}
           </Button>
